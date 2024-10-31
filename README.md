@@ -133,8 +133,8 @@ Folder: **Mike**
    - mike-workbook.ipynb:  Used for data cleansing and exploration.
 
 Folder: **Giselle**
-   - ChatGPT prompt.ipynb:
-   - testing vader and roberta.ipynb:
+   - ChatGPT query.ipynb: Used for developing and refining the prompt functions to query ChatGPT for generating tailored sales pitches.
+   - testing vader and roberta.ipynb: Used for initial testing and evaluation of the VADER and RoBERTa models on sample data, including sentiment scoring and analysis.
 
 ## Acknowledgments
 - **Amazon Reviews 2023** for providing the dataset.
