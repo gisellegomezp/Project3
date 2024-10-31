@@ -120,14 +120,21 @@ The final model performs well, achieving accurate predictions for star ratings b
 
 ## Development Folders and Files 
 Folder: **Project Main**
-    - data: used to hold the files created during code execution
-    - data_evaluate.ipynb : Main code file used to process data, execute models, and start the user interface
-    - model.ipynb: used for RoBERTa and VADER model development
+   - data: used to hold the files created during code execution
+   - data_evaluate.ipynb : Main code file used to process data, execute models, and start the user interface
+   - model.ipynb: used for RoBERTa and VADER model development
 
-Folder: Lonnie
-    - Gradio.ipynb: Used for gradio testing and development. 
-    - Roberta Test 1.ipynb: used for roberta model devlopment and testing.
-    - Prompt Function.ipynb used for developing the prompt that is used to query chatGPT for a sales pitch.
+Folder: **Lonnie**
+   - Gradio.ipynb: Used for gradio testing and development. 
+   - Roberta Test 1.ipynb: used for roberta model devlopment and testing.
+   - Prompt Function.ipynb used for developing the prompt that is used to query chatGPT for a sales pitch.
+
+Folder: **Mike**
+   - mike-workbook.ipynb:  Used for data cleansing and exploration.
+
+Folder: **Giselle**
+   - ChatGPT prompt.ipynb:
+   - testing vader and roberta.ipynb:
 
 ## Acknowledgments
 - **Amazon Reviews 2023** for providing the dataset.
