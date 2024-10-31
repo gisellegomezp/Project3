@@ -1,81 +1,138 @@
-
-# Sentiment Analysis of Amazon Appliance Reviews
+# Sentiment Analysis and Rating Prediction for Amazon Reviews
 
 ## Project Overview
-
-This project is a part of our AI and Machine Learning bootcamp final project, aimed at performing sentiment analysis on customer reviews from the Amazon Appliance dataset. Our goal is to build machine learning models that analyze customer feedback and provide insights into consistently positive or negative reviewers, ultimately assisting in understanding brand perception.
+This project aims to perform sentiment analysis and star rating prediction on Amazon appliance reviews. Using state-of-the-art machine learning models, the system predicts a star rating (from 1 to 5) based on the text and title of customer reviews. Additionally, we’ve developed an interactive Gradio interface that allows users to explore the model's predictions and view custom-generated sales pitches in various entertaining styles.
 
 ## Table of Contents
-
-- [Problem Statement](#problem-statement)
-- [Data](#data)
-- [Models and Techniques](#models-and-techniques)
-- [Evaluation Metrics](#evaluation-metrics)
+- [Data Source](#data-source)
+- [Objectives](#objectives)
+- [Methodology](#methodology)
+- [Modeling](#modeling)
+- [Gradio Interface](#gradio-interface)
 - [Results](#results)
+- [Requirements](#requirements)
 - [Future Development](#future-development)
-- [Installation](#installation)
-- [Contributors](#contributors)
+- [How to Run](#how-to-run)
+- [Team](#team)
+
+## Data Source
+The data was obtained from [Amazon Reviews 2023](https://amazon-reviews-2023.github.io/), specifically focusing on appliance reviews. Each review includes fields such as:
+- `title`: The title of the review.
+- `text`: The full text description of the review.
+- `rating`: The original rating provided by the customer (1 to 5 stars).
+
+## Objectives
+1. Predict customer ratings (1-5 stars) based on review title and description.
+2. Develop a user-friendly interface for rating predictions and custom sales pitches.
+3. Experiment with various styles of sales pitches using ChatGPT’s API to make the interface engaging and interactive.
+
+## Methodology
+1. **Data Preprocessing**:
+   - Combined the `title` and `text` fields to form a single text input.
+   - Tokenized the text using Roberta’s tokenizer, then padded/truncated to a fixed length.
+   - Mapped star ratings to a 0-4 scale for compatibility with the model output.
+
+2. **Modeling**:
+   The following machine learning and natural language processing models were explored in this project:
+
+        1. **VADER Sentiment Analysis**: A lexicon and rule-based sentiment analysis tool.
+        2. **RoBERTa Transformer Model**: A transformer-based model fine-tuned for sentiment analysis tasks.
+        3. **TF-IDF**: A traditional term frequency-inverse document frequency model.
+        4. **Doc2Vec/Word2Vec**: Tools for capturing semantic relationships between words in the reviews.
+        5. **Polar**: Used for data management during exploration.
+
+    - We used a pre-trained Roberta model from Hugging Face’s `transformers` library, and pre-trained VADER model to predict five point ratings based on review text.
+    - Roberta and Vader models were tested. We determined that Vader model provided better results for this application.
 
 
-## Problem Statement
+## Gradio Interface
+An interactive Gradio interface was developed to showcase the model’s predictions. Key features of the interface include:
+- **Input Fields**: Users can enter a review title and description.
+- **Predicted Rating**: The model outputs the predicted star rating (1 to 5).
+- **Custom Sales Pitch**: Using the ChatGPT API, the interface generates a sales pitch in various narrative styles, including Pirate, Shakespearean, Robot, and more.
 
-With the increasing number of customer reviews online, it becomes critical for companies to understand sentiment behind product feedback to improve services and customer experience. This project focuses on using sentiment analysis to evaluate customer feedback on appliances, specifically identifying reviews that are consistently positive or negative, to provide insights into product and brand performance.
-
-## Data
-
-We used a subset of Amazon reviews focusing on the appliance category. The dataset was processed and stored as Parquet files for efficient management, given its large size. Basic cleaning, transformation, and exploration steps were performed to prepare the data for model training.
-
-### Data Source
-
-- Amazon Appliance Reviews Dataset (2023)
-- Parquet files are used to handle the large volume of data
-
-## Models and Techniques
-
-The following machine learning and natural language processing models were explored in this project:
-
-1. **VADER Sentiment Analysis**: A lexicon and rule-based sentiment analysis tool.
-2. **RoBERTa Transformer Model**: A transformer-based model fine-tuned for sentiment analysis tasks.
-3. **TF-IDF**: A traditional term frequency-inverse document frequency model.
-4. **Doc2Vec/Word2Vec**: Tools for capturing semantic relationships between words in the reviews.
-5. **Polar**: Used for data management during exploration.
-
-We are also incorporating the **VADER** library, which was not covered in the class, to deepen our analysis.
-
-## Evaluation Metrics
-
-The performance of the models is evaluated based on the following metrics:
-- **Accuracy**
-- **Precision**
-- **Recall**
-- **F1 Score**
+### Available Sales Pitch Styles
+- Pirate
+- Shakespearean
+- Robot
+- Southern Drawl
+- Epic Movie Trailer
+- Yoda
+- Salesperson Stereotype
+- Detective Noir
+- Sports Announcer
+- Valley Girl
+- Sci-Fi Space Captain
+- Poetic
+- Elderly Grandparent
+- Excited Kid
+- Formal Business Pitch
+- Haunted Ghost
 
 ## Results
+The final model performs well, achieving accurate predictions for star ratings based on review content. The interactive Gradio interface adds an engaging element, allowing users to view predictions alongside entertaining sales pitches generated by ChatGPT in a variety of styles.
 
-Initial results indicate that sentiment analysis can provide valuable insights into customer reviews. We are comparing multiple models to identify the best approach for analyzing customer sentiment. We are still in the process of expanding our results with additional graphs and performance metrics.
+## Requirements
+- **Model Implementation**:
+  - A Jupyter notebook describes the data extraction, cleaning, preprocessing, and model training.
+  - Model accuracy meets the project's baseline criteria.
+  - The Gradio interface includes additional functionality with ChatGPT API for custom sales pitches.
+- **Model Optimization**:
+  - Model optimization by using NLTK to remove stop words and tokenize text, demonstrating iterative improvements.
+- **GitHub Documentation**:
+  - The repository contains this README file usage.
+- **Presentation Requirements**:
+  - The project was presented with an executive summary, data overview, and future development ideas.
 
 ## Future Development
+- Expand the dataset to include reviews from other product categories for a more generalizable model.
+- Improve the sales pitch generation by fine-tuning the ChatGPT prompts based on feedback.
+- Add functionality to analyze sentiment trends over time or by product brand.
 
-In the future, we aim to expand the scope of our project by:
-- Identifying consistently positive or negative reviewers.
-- Linking product reviews to brands to assess overall brand sentiment.
-- Using external tools like UPC_Index.com to enhance our analysis.
+## How to Run
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/gisellegomezp/Project-3.git
 
-## Installation
 
-To run this project locally, follow these steps:
+2. **Install Dependancies**:
+- Pandas: For data manipulation.
+- Json: For reading source files
+- Transformers: For loading tokenizer and Roberta model.
+- Scikit-learn: For data splitting.
+- TensorFlow: For model training and evaluation.
+- NLTK: For preparing data for removing stopwords and tokenizing text
+- OpenAI: For sales pitch generation
+- vaderSentiment: for sentiment analysis
+- Gradio: For user interface
 
-1. Clone the repository:
-2. Install the required libraries:
-3. Run the Jupyter notebook for data exploration and model training:
-4. The project also includes a script for model training that can be run with:
+3. **Run code to launch the Gradio Interface**:  
+   Open the Jupyter notebook "data_evaluate.ipynb" in the repository, execute the code cells in order which will process and prepare data, load the model and launch the Gradio interface.
 
-## Contributors
+4. **Interact with the Interface**:
+   - Enter a review title and description in the provided fields.
+   - View the predicted star rating and choose a sales pitch style to see a generated pitch.
 
-- **Mike Saunders**
-- **Lonnie Aldregde**
-- **Giselle Gomez**
+## Team
+- **Lonnie** -  UI development.
+- **Giselle** - Model selection and tuning.
+- **Mike** - Data management and preprocessing
+
+## Development Folders and Files 
+Folder: **Project Main**
+    - data: used to hold the files created during code execution
+    - data_evaluate.ipynb : Main code file used to process data, execute models, and start the user interface
+    - model.ipynb: used for RoBERTa and VADER model development
+
+Folder: Lonnie
+    - Gradio.ipynb: Used for gradio testing and development. 
+    - Roberta Test 1.ipynb: used for roberta model devlopment and testing.
+    - Prompt Function.ipynb used for developing the prompt that is used to query chatGPT for a sales pitch.
+
+## Acknowledgments
+- **Amazon Reviews 2023** for providing the dataset.
+- **Hugging Face** for the `transformers` library.
+- **Gradio** for creating an intuitive tool for interactive model demos.
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
